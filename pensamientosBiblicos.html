@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://tusitio.com/examen-discipulado" />
+  <meta property="og:title"       content="Exámen Discipulado al Ser Creado Por Dios" />
+  <meta property="og:description" content="Pon a prueba lo aprendido: 'Y creó Dios al hombre a su imagen…' (Génesis 1:27) y 'Ser conformes a la imagen de su Hijo' (Romanos 8:29)." />
+  <meta property="og:image"       content="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F2.bp.blogspot.com%2F-Kkvy363zwJE%2FTyIYLHx3UgI%2FAAAAAAAAAB0%2FPYiBvR6yZss%2Fs1600%2Fyo%2Bsoy%2Bla%2Bluz%2Bdel%2Bmundo.jpg&f=1&nofb=1&ipt=8f06a9723b1d88d80fef31e052267f993a8afe90072c89bb7e0b0d26f446c00d" />
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <title>Exámen - Conociendo al Ser Creado Por Dios</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthumbs.dreamstime.com%2Fb%2Ficono-de-la-bombilla-luz-azul-aislado-en-fondo-blanco-294667366.jpg&f=1&nofb=1&ipt=8a2049150145cf48c10c3ff7b36dede94c163ec3afd0de2f4c291131e3af242b" type="image/x-icon">
+</head>
+ <style>
+    body {
+      background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthechurchco-production.s3.amazonaws.com%2Fuploads%2Fsites%2F2378%2F2021%2F04%2Fesp-04.25.21-title-pic.jpg&f=1&nofb=1&ipt=00a0777497a51b0016eb77c3936a8389b6435907787d9bfb75dc48f436630aef');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body class="text-white font-mono min-h-screen p-2 sm:p-6 bg-black bg-opacity-80">
+ <div id="key-modal" class="fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center text-center px-4">
+    <h2 class="text-3xl text-yellow-400 neon-text mb-4">Ingrese la clave 5º Discipulado</h2>
+    <input id="access-key" type="password" placeholder="Clave" class="p-3 rounded text-black text-lg mb-4 w-full max-w-xs" />
+    <button id="key-submit" class="bg-blue-600 hover:bg-blue-800 px-8 py-3 rounded text-white text-xl font-bold neon-button w-full max-w-xs">
+      Validar
+    </button>
+    <p id="key-error" class="text-red-500 mt-2 hidden">Clave incorrecta, inténtalo de nuevo.</p>
+  </div>
+
+  <!-- Pantalla Inicio -->
+  <div id="start-screen" class="flex flex-col items-center justify-center h-screen text-center px-2 sm:px-4">
+    <h1 class="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-4 sm:mb-6 neon-text">Bienvenido</h1>
+    <h1 class="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-4 sm:mb-6 neon-text">Exámen</h1>
+    <h1 class="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-6 sm:mb-8 neon-text">Discípulado</h1>
+
+    <input type="text" id="player-name" placeholder="Ingresa tu nombre" class="p-3 rounded text-black text-lg mb-6 w-full max-w-xs" maxlength="15" />
+    <button id="start-btn" class="bg-green-600 hover:bg-green-800 px-8 py-3 rounded text-white text-xl font-bold neon-button w-full max-w-xs">Comenzar</button>
+  </div>
+  
+  <!-- Contenedor del Juego -->
+  <div id="game-container" class="hidden w-full max-w-4xl mx-auto flex-grow flex flex-col px-2">
+
+    <!-- Header: jugador, score y timer -->
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-3 gap-4 sm:gap-0">
+      <h2 id="player-display" class="text-xl sm:text-2xl text-yellow-300 neon-text text-center sm:text-left"></h2>
+      <div class="flex flex-wrap justify-center sm:justify-end items-center gap-4">
+        <h2 class="text-lg sm:text-2xl text-green-400 neon-text">Puntaje: <span id="score-display">0</span> / 10000</h2>
+        <div class="text-lg text-pink-400 neon-text flex items-center gap-1">
+          ⏱️ <span id="timer">15</span>s
+        </div>
+        <button id="mute-btn" class="bg-purple-700 px-3 py-1 rounded neon-button text-sm">🔊</button>
+      </div>
+    </div>
+
+    <!-- Barra progreso -->
+    <div class="w-full bg-gray-700 rounded-full h-4 mb-4">
+      <div id="progress-bar" class="bg-pink-600 h-4 rounded-full transition-all duration-500" style="width: 0%;"></div>
+    </div>
+
+    <!-- Área de preguntas -->
+    <div id="game-area" class="flex-grow overflow-auto text-center"></div>
+
+  </div>
+
+  <!-- Pantalla intermedia actividades -->
+  <div id="activity-screen" class="hidden fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center text-center px-4">
+    <h2 id="activity-message" class="text-2xl sm:text-4xl text-yellow-400 neon-text mb-6"></h2>
+    <button id="next-activity-btn" class="bg-blue-600 hover:bg-blue-800 px-6 py-3 rounded text-white text-lg sm:text-xl font-bold neon-button">Siguiente Actividad</button>
+  </div>
+
+  <!-- Modal final -->
+  <div id="modal-final" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center hidden px-2">
+    <div class="bg-gray-900 text-white p-6 sm:p-10 rounded-xl shadow-xl w-full max-w-lg text-center neon-glow">
+      <h2 class="text-2xl sm:text-4xl font-extrabold mb-4 neon-text">¡Has completado el desafío!</h2>
+      <h3 class="mb-4 neon-text text-lg sm:text-xl">clave par el 6º Exámen Ideas y mentes: 1112</h3>
+      <p class="text-xl sm:text-2xl mb-4">Tu puntuación total: <span id="final-score"></span></p>
+      <div id="star-rating" class="flex justify-center mb-6 gap-2 text-yellow-400 text-3xl sm:text-4xl"></div>
+      <h3 class="mb-4 neon-text text-lg sm:text-xl">Ranking Discípulos</h3>
+      <ol id="ranking-list" class="mb-6 text-left max-h-48 overflow-auto px-4"></ol>
+      <button id="restart-btn" class="bg-indigo-700 hover:bg-indigo-900 px-6 py-3 rounded text-white text-lg sm:text-xl font-bold neon-button">Realizarlo Nuevamente</button>
+    </div>
+  </div>
+
+  <!-- Audios -->
+  <audio id="sound-correct" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg" preload="auto"></audio>
+  <audio id="sound-wrong" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg" preload="auto"></audio>
+  <audio id="music-bg" src="https://cdn.pixabay.com/download/audio/2022/03/22/audio_c6d9c45b4f.mp3?filename=lofi-hip-hop-beat-13531.mp3" loop preload="auto"></audio>
+
+  <!-- Script -->
+  <!-- <script src="script.js"></script> -->
+  <script src="pensamientosBiblicos.js"></script>
+</body>
+</html>
