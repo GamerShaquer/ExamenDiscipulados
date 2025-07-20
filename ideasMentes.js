@@ -140,7 +140,7 @@ function mostrarPregunta() {
     gameArea.appendChild(card);
 
     // Reiniciar y comenzar timer
-    tiempoPregunta = 15;
+    tiempoPregunta = 300;
     timerDisplay.textContent = tiempoPregunta;
     iniciarTimer();
 
